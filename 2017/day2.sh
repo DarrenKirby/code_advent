@@ -6,12 +6,11 @@ FILE=./input/input2.txt
 checksum=0
 
 while read -r line; do
-    numbers=($line) # Split line into array
+    numbers=($line)
 
     largest=${numbers[0]}
     smallest=${numbers[0]}
 
-    # Loop through the array
     for num in "${numbers[@]}"; do
     if (( num > largest )); then
         largest=$num
@@ -34,9 +33,8 @@ echo $checksum
 checksum=0
 
 while read -r line; do
-    numbers=($line) # Split line into array
+    numbers=($line)
 
-    # Loop through the array
     for f_num in "${numbers[@]}"; do
         for s_num in "${numbers[@]}"; do
             if (( $f_num == $s_num )); then
@@ -44,9 +42,7 @@ while read -r line; do
             else
                 result=$(( f_num % s_num ))
                 if (( result == 0 )); then
-                    echo "$f_num / $s_num ="
                     ans=$(( f_num / s_num ))
-                    echo "$ans"
                     checksum=$(( checksum + ans ))
                     break
                 fi

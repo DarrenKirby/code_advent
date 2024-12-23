@@ -37,4 +37,5 @@ for rep in reports:
                 safe += 1
                 break
 
-print(safe, natural_safe)
+print(natural_safe)
+print(safe)

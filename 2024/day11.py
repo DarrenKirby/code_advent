@@ -21,12 +21,17 @@ for _ in range(25):
 
 print(len(stones_l))
 
+
 # Part 2
 # Too much growth to brute-force
+import time
+import sys
 from functools import lru_cache
+start = time.time()
 
 # Don't really need the cache; dict is fast enough
-# but it does speed up by 0.5s or so
+# but it does basically halve the runtime. Executes
+# for ~2s without ~1s with the cache at n=500 iterations.
 @lru_cache(maxsize=None)
 def permute_stone(s):
     if s == 0:
@@ -52,3 +57,5 @@ for _ in range(75):
 
 result = sum(n for n in stone_counter.values())
 print(result)
+end = time.time()
+print(end - start)

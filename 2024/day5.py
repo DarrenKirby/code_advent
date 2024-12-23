@@ -17,6 +17,7 @@ for lst in updates[:]:
 to_sum = []
 for l in in_order:
     to_sum.append(int(l[len(l) // 2]))
+
 print(sum(to_sum))
 
 def topological_sort(graph: dict) -> list:
@@ -55,4 +56,5 @@ for lst in not_in_order:
 to_sum = []
 for l in ordered:
     to_sum.append(int(l[len(l) // 2]))
+
 print(sum(to_sum))

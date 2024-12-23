@@ -9,7 +9,6 @@ regex = r"mul\(\d{1,3},\d{1,3}\)"
 for line in lines:
     matches = re.findall(regex, line)
     for match in matches:
-        #print(match)
         nums = match[4:-1]
         f1, f2 = nums.split(",")
         products.append(int(f1) * int(f2))
@@ -17,7 +16,6 @@ for line in lines:
 print(sum(products))
 
 # part 2
-
 data = ""
 with open("input3.txt", "r") as f:
     lines = f.readlines()

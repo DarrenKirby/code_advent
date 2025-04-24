@@ -41,6 +41,7 @@ rows, cols = grid.shape
 # Fresh grid for cycle detection
 cyclic_grid = np.array(list(map(list, lines)))
 
+# Find origin
 for r in range(rows):
     for c in range(cols):
         if cyclic_grid[r, c] == "^":
@@ -53,6 +54,8 @@ def is_cycle(grid, index):
     dc = 0
     visited = set()
     while True:
+        # We must track dr/dc too, as visiting 
+        # a spot twice is not necessarily a cycle. 
         visited.add((r, c, dr, dc))
         if r + dr < 0 or r + dr >= rows or c + dc < 0 or c + dc >= cols:
             # We've left the map. No cycle
@@ -63,19 +66,24 @@ def is_cycle(grid, index):
             r += dr
             c += dc
         if (r, c, dr, dc) in visited:
-            # Same location and dirrection. It's a cycle
+            # Same location and direction. It's a cycle
             return True
 
 # Find trodden spots to place obstacles
+# using our previously marked up grid
 cycles = 0
 for nr in range(rows):
     for nc in range(cols):
-        # Use our previously marked up grid
+
+        # Logic dictates only spots marked in the previous walk 
+        # make sense to place obstacles in. Using only these 
+        # dramatically reduces the search space
         if grid[nr,nc] == "X":
             cyclic_grid[nr,nc] = '#'
             if is_cycle(cyclic_grid, index):
+                # Count if it's a cycle
                 cycles += 1
-            # Remove the obstacle
+            # Remove the obstacle and reset map
             cyclic_grid[nr, nc] = '.'
 
 print(cycles)

@@ -1,0 +1,30 @@
+# Ignore JetBrains IDE project files in any subdirectory
+**/.idea/
+
+# Ignore compiled/intermediate files for common languages
+**/*.pyc
+**/__pycache__/
+**/*.class
+**/*.o
+**/*.out
+**/*.exe
+**/*.obj
+**/*.log
+**/target/
+**/build/
+**/dist/
+**/.DS_Store
+
+# Ignore virtual environments
+**/venv/
+**/.venv/
+
+# Ignore Rust target dir
+**/target/
+
+# Ignore Go bin dir
+**/bin/
+
+# Ignore input files and folders
+**/input/
+

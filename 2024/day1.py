@@ -21,4 +21,4 @@ for number in left:
     n = right.count(number)
     similarity_score.append(number * n)
 
-sum(similarity_score)
+print(sum(similarity_score))

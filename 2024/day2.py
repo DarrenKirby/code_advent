@@ -1,5 +1,5 @@
 def check_safety(l: list) -> bool:
-    diffs = [l[i + 1] -  l[i] for i in range(len(l) - 1)]
+    diffs = [l[idx + 1] - l[idx] for idx in range(len(l) - 1)]
 
     if 0 in diffs:
         return False
@@ -15,7 +15,8 @@ def check_safety(l: list) -> bool:
                 return False
     return True
 
-with open("input2.txt", "r") as f:
+
+with open("input/day2.txt", "r") as f:
     lines = f.readlines()
 
 reports = []

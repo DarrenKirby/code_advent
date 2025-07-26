@@ -1,4 +1,4 @@
-with open("input.txt", "r") as f:
+with open("input/day1.txt", "r") as f:
     lines = f.readlines()
 
 left = []
@@ -12,13 +12,7 @@ left.sort()
 right.sort()
 pairs = list(zip(left, right))
 
-diffs = []
-for pair in pairs:
-    if pair[0] > pair[1]:
-        diffs.append(pair[0] - pair[1])
-    else:
-        diffs.append(pair[1] - pair[0])
-
+diffs = [abs(pair[0] - pair[1]) for pair in pairs]
 print(sum(diffs))
 
 # part 2

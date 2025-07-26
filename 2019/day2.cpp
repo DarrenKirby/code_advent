@@ -2,10 +2,6 @@
 
 int main() {
     ifstream inputFile("input/day2.txt");
-    if (!inputFile) {
-        cerr << "Couldn't open file" << endl;
-        return 1;
-    }
 
     vector<int> instructions;
     string line;
@@ -67,8 +63,6 @@ int main() {
                 idx += 4;
             }
             if (working[0] == 19690720) {
-                cout << "noun : " << noun << " verb: " << verb << endl;
-                cout << "working[0]: " << working[0] << endl;
                 cout << "part2: " << 100 * noun + verb << endl;
                 return 0;
             }

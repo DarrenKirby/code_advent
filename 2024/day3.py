@@ -1,4 +1,5 @@
 import re
+
 with open("input3.txt", "r") as f:
     lines = f.readlines()
 
@@ -21,7 +22,6 @@ with open("input3.txt", "r") as f:
     lines = f.readlines()
     for line in lines:
         data += line
-
 
 valid_instructions = re.findall(r"mul\(\d{1,3},\d{1,3}\)|do\(\)|don\'t\(\)", data)
 products1 = []

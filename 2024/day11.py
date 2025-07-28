@@ -1,6 +1,11 @@
-# Input scrubbed
-input = "#############"
-stones_l = [int(s) for s in input.split()]
+import time
+from functools import lru_cache
+
+with open("input/day11.txt", 'r') as f:
+    lines = f.read().splitlines()
+
+stones_l = [int(s) for s in lines[0].split()]
+
 
 # Part 1
 def permute_stones(stones):
@@ -16,18 +21,16 @@ def permute_stones(stones):
             s.append(stone * 2024)
     return s
 
+
 for _ in range(25):
     stones_l = permute_stones(stones_l)
 
 print(len(stones_l))
 
-
 # Part 2
 # Too much growth to brute-force
-import time
-import sys
-from functools import lru_cache
 start = time.time()
+
 
 # Don't really need the cache; dict is fast enough
 # but it does basically halve the runtime. Executes
@@ -35,7 +38,7 @@ start = time.time()
 @lru_cache(maxsize=None)
 def permute_stone(s):
     if s == 0:
-        return[1]
+        return [1]
     elif len(str(s)) % 2 == 0:
         s = str(s)
         l, r = int(s[0:len(s) // 2]), int(s[len(s) // 2:])
@@ -43,7 +46,8 @@ def permute_stone(s):
     else:
         return [s * 2024]
 
-stones_l = [int(s) for s in input.split()]
+
+stones_l = [int(s) for s in lines[0].split()]
 stone_counter = dict((n, 1) for n in stones_l)
 for _ in range(75):
     tmp_stone_counter = dict()

@@ -1,4 +1,4 @@
-with open("input5.txt", 'r') as f:
+with open("input/day5.txt", 'r') as f:
     data = f.read().splitlines()
 
 ordering = [line.split("|") for line in data if line.find("|") > 0]
@@ -20,7 +20,8 @@ for l in in_order:
 
 print(sum(to_sum))
 
-def topological_sort(graph: dict) -> list:
+
+def topological_sort(i_graph: dict) -> list:
     visited = set()
     stack = []
 
@@ -30,16 +31,17 @@ def topological_sort(graph: dict) -> list:
         if node not in visited:
             visited.add(node)
             path.append(node)
-            for neighbor in graph[node]:
+            for neighbor in i_graph[node]:
                 dfs(neighbor, path)
             path.pop()
             stack.append(node)
 
-    for outer_node in graph:
+    for outer_node in i_graph:
         if outer_node not in visited:
             dfs(outer_node, [])
 
     return stack
+
 
 # Part 2
 ordered = []

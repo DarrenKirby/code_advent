@@ -2,7 +2,7 @@
 
 int main() {
     vector<int> modules;
-    ifstream inputFile("input/day1.txt");
+    ifstream inputFile("../input/day1.txt");
 
     if (!inputFile.is_open()) {
         cerr << "Failed to open file!" << endl;

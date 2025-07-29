@@ -3,6 +3,11 @@
 int main() {
     ifstream inputFile("input/day2.txt");
 
+    if (!inputFile.is_open()) {
+        cerr << "Failed to open file!" << endl;
+        return 1;
+    }
+
     vector<int> instructions;
     string line;
     getline(inputFile, line);  // read the whole line
@@ -68,5 +73,4 @@ int main() {
             }
         }
     }
-    return 0;
 }

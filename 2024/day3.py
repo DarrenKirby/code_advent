@@ -1,29 +1,14 @@
 import re
 
-with open("input3.txt", "r") as f:
-    lines = f.readlines()
-
-# part 1
-products = []
-regex = r"mul\(\d{1,3},\d{1,3}\)"
-
-for line in lines:
-    matches = re.findall(regex, line)
-    for match in matches:
-        nums = match[4:-1]
-        f1, f2 = nums.split(",")
-        products.append(int(f1) * int(f2))
-
-print(sum(products))
-
-# part 2
 data = ""
-with open("input3.txt", "r") as f:
+with open("input/day3.txt", "r") as f:
     lines = f.readlines()
     for line in lines:
         data += line
 
 valid_instructions = re.findall(r"mul\(\d{1,3},\d{1,3}\)|do\(\)|don\'t\(\)", data)
+
+# part 1
 products1 = []
 for mul in valid_instructions:
     try:
@@ -35,6 +20,7 @@ for mul in valid_instructions:
 
 print(sum(products1))
 
+# part 2
 products2 = []
 process = True
 for inst in valid_instructions:

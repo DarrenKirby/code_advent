@@ -1,7 +1,3 @@
-//
-// Created by Darren Kirby on 2025-07-23.
-//
-
 #ifndef AOC_H
 #define AOC_H
 

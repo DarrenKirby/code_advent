@@ -1,7 +1,7 @@
 # Needed for 'permutations'
 using Combinatorics
 
-lines = open("./advent/input9.txt") do file
+lines = open("./input/day9.txt") do file
     readlines(file)
 end
 
@@ -24,20 +24,22 @@ for line in lines
 end
 
 perms = collect(permutations([towns...]))
-shortest = 1000
-longest = 0
-for perm in perms
-    d = 0
-    for i in 1:7
-        d += distances[perm[i]][perm[i+1]]
-    end
-    if d < shortest
-        shortest = d
-    end
-    if d > longest
-        longest = d
+let shortest = 1000
+    let longest = 0
+        for perm in perms
+            d = 0
+            for i in 1:7
+                d += distances[perm[i]][perm[i+1]]
+            end
+            if d < shortest
+                shortest = d
+            end
+            if d > longest
+                longest = d
+            end
+        end
+
+        println(shortest)
+        println(longest)
     end
 end
-
-println(shortest)
-println(longest)

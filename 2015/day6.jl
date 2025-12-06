@@ -1,4 +1,4 @@
-lines = open("./advent/input6.txt") do file
+lines = open("./input/day6.txt") do file
     readlines(file)
 end
 
@@ -18,64 +18,66 @@ end
 
 ops = [process_line(line) for line in lines]
 n = 1000
-grid = zeros(Int64, n, n)
 
-for op in ops
-    if op[1] == "off"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                grid[i,j] = 0
-            end
-        end
-    elseif op[1] == "on"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                grid[i,j] = 1
-            end
-        end
-    elseif op[1] == "toggle"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                if grid[i,j] == 0
-                    grid[i,j] = 1
-                else
+let grid = zeros(Int64, n, n)
+    for op in ops
+        if op[1] == "off"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
                     grid[i,j] = 0
+                end
+            end
+        elseif op[1] == "on"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
+                    grid[i,j] = 1
+                end
+            end
+        elseif op[1] == "toggle"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
+                    if grid[i,j] == 0
+                        grid[i,j] = 1
+                    else
+                        grid[i,j] = 0
+                    end
                 end
             end
         end
     end
-end
 
-println(count(!iszero, grid))
+    println(count(!iszero, grid))
+end
 
 # Part 2
 ops = [process_line(line) for line in lines]
 n = 1000
-grid = zeros(Int64, n, n)
 
-for op in ops
-    if op[1] == "off"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                if grid[i,j] == 0
-                    continue
+let grid = zeros(Int64, n, n)
+    for op in ops
+        if op[1] == "off"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
+                    if grid[i,j] == 0
+                        continue
+                    end
+                    grid[i,j] -= 1
                 end
-                grid[i,j] -= 1
             end
-        end
-    elseif op[1] == "on"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                grid[i,j] += 1
+        elseif op[1] == "on"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
+                    grid[i,j] += 1
+                end
             end
-        end
-    elseif op[1] == "toggle"
-        for i in op[2]:op[4]
-            for j in op[3]:op[5]
-                grid[i,j] += 2
+        elseif op[1] == "toggle"
+            for i in op[2]:op[4]
+                for j in op[3]:op[5]
+                    grid[i,j] += 2
+                end
             end
         end
     end
-end
 
-println(sum(grid[:]))
+    println(sum(grid[:]))
+end

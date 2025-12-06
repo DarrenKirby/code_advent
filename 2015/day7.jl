@@ -1,4 +1,4 @@
-lines = open("./advent/input7.txt") do file
+lines = open("./input/day7.txt") do file
     readlines(file)
 end
 

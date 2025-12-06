@@ -1,4 +1,4 @@
-lines = open("./advent/input8.txt") do file
+lines = open("./input/day8.txt") do file
     readlines(file)
 end
 
@@ -11,17 +11,19 @@ function count_escaped_string(s)
     l = length(s)
 end
 
-diff = 0
-for line in lines
-    diff += count_raw_string(line) - count_escaped_string(line)
-end
+let diff = 0
+    for line in lines
+        diff += count_raw_string(line) - count_escaped_string(line)
+    end
 
-println(diff)
+    println(diff)
+end
 
 # part 2
-cnt = 0
-for line in lines
-    cnt += (2 + count(r"\\\\", line) + count("\"", line))
-end
+let cnt = 0
+    for line in lines
+        cnt += (2 + count(r"\\\\", line) + count("\"", line))
+    end
 
-println(cnt)
+    println(cnt)
+end

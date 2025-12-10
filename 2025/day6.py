@@ -26,27 +26,21 @@ grand_total = 0
 idx = 0
 while idx < len(cols):
     row = cols[idx]
-
     # operator is always last element of the tuple
     op = row[-1]
 
     operands = []
-
     # read operand rows until a blank tuple
     while idx < len(cols) and any(c != ' ' for c in cols[idx]):
         tup = cols[idx]
-
         # everything except the last column is a potential digit
         digit_part = ''.join(c for c in tup[:-1] if c.isdigit())
-
         if digit_part:
             operands.append(int(digit_part))
-
         idx += 1
 
     # Now we’re on the blank separator row — skip it
     idx += 1
-
     # Apply the operation
     if op == '+':
         grand_total += sum(operands)

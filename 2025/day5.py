@@ -20,7 +20,8 @@ for ingredient in ids:
 # part 1
 print(len(good))
 
-def count_unique_values(ranges):
+
+def count_unique_values(ranges: list[range]) -> int:
     pairs = [(r.start, r.stop) for r in ranges]
     pairs.sort()
 
@@ -35,8 +36,8 @@ def count_unique_values(ranges):
             cur_end = max(cur_end, e)
 
     merged.append((cur_start, cur_end))
-
     return sum(e - s for s, e in merged)
+
 
 #part 2
 print(count_unique_values(id_r))

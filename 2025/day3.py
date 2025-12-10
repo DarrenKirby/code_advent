@@ -8,6 +8,7 @@ def pick_biggest(s: str, k: int) -> str:
         out.append(c)
     return ''.join(out[:k])
 
+
 p1_joltage = 0
 p2_joltage = 0
 
@@ -20,4 +21,3 @@ for bank in lines:
 
 print(p1_joltage)
 print(p2_joltage)
-

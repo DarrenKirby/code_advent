@@ -11,21 +11,21 @@ grid: dict[tuple[int, int], str] = \
 
 
 def process_part1(r: int, c: int) -> int:
-    if grid[(r, c)] == '|':
+    if grid[r, c] == '|':
         try:
-            if grid[(r + 1, c)] == '.':
-                grid[(r + 1, c)] = '|'
+            if grid[r + 1, c] == '.':
+                grid[r + 1, c] = '|'
                 return 0
-            elif grid[(r + 1, c)] == '^':
-                grid[(r + 1, c + 1)] = '|'
-                grid[(r + 1, c - 1)] = '|'
+            elif grid[r + 1, c] == '^':
+                grid[r + 1, c + 1] = '|'
+                grid[r + 1, c - 1] = '|'
                 return 1
         except KeyError:
             return 0
     return 0
 
 
-grid[(1, xmax // 2 - 1)] = '|'
+grid[1, xmax // 2 - 1] = '|'
 splits = 0
 for row in range(xmax):
     for col in range(ymax):
@@ -37,18 +37,18 @@ print(splits)
 
 def process_part2(r: int, c: int) -> None:
     if grid[r, c] == '^' and type(grid[r - 1, c]) == int:
-        digit = grid[(r - 1, c)]
+        digit = grid[r - 1, c]
         try:
-            if type(grid[(r, c - 1)]) == int:
-                digit2 = grid[(r, c - 1)]
-                grid[(r, c - 1)] = digit + digit2
+            if type(grid[r, c - 1]) == int:
+                digit2 = grid[r, c - 1]
+                grid[r, c - 1] = digit + digit2
             else:
-                grid[(r, c - 1)] = digit
-            if type(grid[(r, c + 1)]) == int:
-                digit3 = grid[(r, c + 1)]
-                grid[(r, c + 1)] = digit + digit3
+                grid[r, c - 1] = digit
+            if type(grid[r, c + 1]) == int:
+                digit3 = grid[r, c + 1]
+                grid[r, c + 1] = digit + digit3
             else:
-                grid[(r, c + 1)] = digit
+                grid[r, c + 1] = digit
         except KeyError:
             pass
 
@@ -63,10 +63,11 @@ def drop_row(r: int) -> None:
                 pass
 
 
+# Not used, other than for debugging
 def p_grid() -> None:
     for r in range(xmax):
         for c in range(ymax):
-            print(f" {grid[(r, c)]} ", end='')
+            print(f" {grid[r, c]} ", end='')
         print()
     print()
 
@@ -76,7 +77,7 @@ grid: dict[tuple[int, int], str | int] = \
      for x, row in enumerate(lines)
      for y, char in enumerate(row.strip('\n'))}
 
-grid[(1, xmax // 2 - 1)] = 1
+grid[1, xmax // 2 - 1] = 1
 for row in range(xmax):
     for col in range(ymax):
         process_part2(row, col)
@@ -84,8 +85,8 @@ for row in range(xmax):
 
 total = 0
 for pos in range(ymax):
-    if isinstance(grid[(xmax - 1, pos)], int):
-        n = int(grid[(xmax - 1, pos)])
+    if isinstance(grid[xmax - 1, pos], int):
+        n = int(grid[xmax - 1, pos])
         total += n
 
 #part 2

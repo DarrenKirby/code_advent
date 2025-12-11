@@ -3,8 +3,14 @@ from math import dist
 from shapely import Polygon
 
 coords = [tuple(int(n) for n in l.split(",")) for l in open("input/day9.txt").readlines()]
-pairs = sorted(combinations(coords, 2),
-               key=lambda x: dist(*x))
+
+
+def get_distance(x: tuple[tuple[int, int, int], tuple[int, int, int]]):
+    return dist(x[0], x[1])
+
+
+combos = tuple(combinations(coords, 2))
+pairs = sorted(combos, key=get_distance)
 
 areas = []
 for (x1, y1), (x2, y2) in pairs:
@@ -28,5 +34,6 @@ for n1 in coords:
         if bound_box.contains(this_poly):
             areas2.append((abs(n1[0] - n2[0]) + 1) * (abs(n1[1] - n2[1]) + 1))
 
+# FIXME: Part 2 very slow, look into how to optimize
 # Part 2
 print(sorted(areas2)[-1])
